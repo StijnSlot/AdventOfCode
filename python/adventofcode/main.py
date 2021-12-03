@@ -13,7 +13,7 @@ def run_day(data : str, module_name: str, method : str):
 
 
 def main():
-    for i in range(1, 2):
+    for i in range(1, 4):
         if i > 1:
             print('-------')
         print(f"Day {i}:")

@@ -1,19 +1,14 @@
 from adventofcode.util import aoc
 
 
-def sliding_window(data : list, start : int, window_length : int):
-    return sum(data[i] for i in range(start, start + window_length))
-
-
 def part_one(data):
     data_rows = [int(x) for x in data.splitlines()]
-    return sum(1 for i in range(len(data.splitlines()) - 1) if data_rows[i] < data_rows[i+1])
+    return sum(1 for i in range(len(data_rows) - 1) if data_rows[i] < data_rows[i+1])
 
 
 def part_two(data):
     data_rows = [int(x) for x in data.splitlines()]
-    return sum(1 for i in range(len(data_rows) - 3)
-               if sliding_window(data_rows, i, 3) < sliding_window(data_rows, i + 1, 3))
+    return sum(1 for i in range(len(data_rows) - 3) if data_rows[i] < data_rows[i+3])
 
 
 if __name__ == "__main__":

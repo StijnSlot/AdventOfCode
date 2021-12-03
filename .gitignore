@@ -130,3 +130,4 @@ dmypy.json
 
 /.idea
 python/.idea
+python/adventofcode/session.txt
