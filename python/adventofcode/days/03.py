@@ -1,11 +1,11 @@
 from adventofcode.util import aoc
 
 
-def most_common_bit(nums: list, i: int):
+def most_common_bit(nums: list[str], i: int) -> int:
     return sum(int(nums[j][i]) for j in range(len(nums))) // (len(nums) // 2)
 
 
-def part_one(data: str):
+def part_one(data: str) -> int:
     nums = data.splitlines()
     gamma = ""
     epsilon = ""
@@ -16,7 +16,7 @@ def part_one(data: str):
     return int(gamma, 2) * int(epsilon, 2)
 
 
-def part_two(data: str):
+def part_two(data: str) -> int:
     oxygen = data.splitlines()
     co2 = data.splitlines()
     i = 0

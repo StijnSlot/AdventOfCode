@@ -1,11 +1,11 @@
 from adventofcode.util import aoc
 
 
-def part_one(data: str):
+def part_one(data: str) -> int:
     return None
 
 
-def part_two(data: str):
+def part_two(data: str) -> int:
     return None
 
 

@@ -1,7 +1,7 @@
 from adventofcode.util import aoc
 
 
-def part_one(data: str):
+def part_one(data: str) -> int:
     x, y = 0, 0
     for line in data.splitlines():
         ins, num = line.split()
@@ -14,7 +14,7 @@ def part_one(data: str):
     return x * y
 
 
-def part_two(data: str):
+def part_two(data: str) -> int:
     x, y, aim = 0, 0, 0
     for line in data.splitlines():
         ins, num = line.split()

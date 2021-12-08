@@ -1,14 +1,14 @@
 from adventofcode.util import aoc
 
 
-def read_input(data: str):
+def read_input(data: str) -> (list[int], list[list[list[int]]]):
     parts = data.split('\n\n')
     nums = [int(x) for x in parts[0].split(',')]
     boards = [[[int(x) for x in row.split()] for row in b.splitlines()] for b in parts[1:]]
     return nums, boards
 
 
-def solved(nums: list, board: list):
+def solved(nums: list[int], board: list[list[list[int]]]) -> bool:
     for row in board:
         if all(x in nums for x in row):
             return True
@@ -18,11 +18,11 @@ def solved(nums: list, board: list):
     return False
 
 
-def score(nums: list, board: list):
-    return sum(sum(x for x in row if x not in nums) for row in board)
+def score(nums: list, board: list) -> int:
+    return sum(x for row in board for x in row if x not in nums)
 
 
-def part_one(data: str):
+def part_one(data: str) -> int:
     nums, boards = read_input(data)
     x, y = 0, len(nums)
     while x + 1 < y:
@@ -34,7 +34,7 @@ def part_one(data: str):
     return nums[y] * score(nums[:y + 1], next(board for board in boards if solved(nums[:y+1], board)))
 
 
-def part_two(data: str):
+def part_two(data: str) -> int:
     nums, boards = read_input(data)
     x, y = 0, len(nums)
     while x + 1 < y:
