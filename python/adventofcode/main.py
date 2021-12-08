@@ -3,7 +3,7 @@ from adventofcode.util import aoc
 import time
 
 
-def run_day(data : str, module_name: str, method : str):
+def run_day(data: str, module_name: str, method: str):
     start_time = time.time()
     result = getattr(import_module(module_name), method)(data)
     if result is None:
@@ -13,7 +13,7 @@ def run_day(data : str, module_name: str, method : str):
 
 
 def main():
-    for i in range(1, 6):
+    for i in range(1, 9):
         if i > 1:
             print('-------')
         print(f"Day {i}:")
