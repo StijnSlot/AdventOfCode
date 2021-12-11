@@ -8,14 +8,21 @@ def read_input(data: str) -> (list[int], list[list[list[int]]]):
     return nums, boards
 
 
-def solved(nums: list[int], board: list[list[list[int]]]) -> bool:
-    for row in board:
-        if all(x in nums for x in row):
-            return True
-    for i in range(len(board[0])):
-        if all(board[j][i] in nums for j in range(len(board))):
-            return True
-    return False
+def solved(nums: list[int], board: list[list[int]]) -> bool:
+    return any(all(x in nums for x in row) for row in board) \
+           or any(all(board[j][i] in nums for j in range(len(board))) for i in range(len(board[0])))
+
+
+def search(nums: list[int], boards: list[list[list[int]]], eval_func: callable):
+    """Performs binary search to find first index where eval_func is true for nums up to index"""""
+    x, y = 0, len(nums)
+    while x + 1 < y:
+        h = (x + y) // 2
+        if eval_func(solved(nums[:h + 1], board) for board in boards):
+            y = h
+        else:
+            x = h
+    return y
 
 
 def score(nums: list, board: list) -> int:
@@ -24,26 +31,14 @@ def score(nums: list, board: list) -> int:
 
 def part_one(data: str) -> int:
     nums, boards = read_input(data)
-    x, y = 0, len(nums)
-    while x + 1 < y:
-        h = (x + y) // 2
-        if any(solved(nums[:h + 1], board) for board in boards):
-            y = h
-        else:
-            x = h
-    return nums[y] * score(nums[:y + 1], next(board for board in boards if solved(nums[:y+1], board)))
+    i = search(nums, boards, any)
+    return nums[i] * score(nums[:i + 1], next(board for board in boards if solved(nums[:i+1], board)))
 
 
 def part_two(data: str) -> int:
     nums, boards = read_input(data)
-    x, y = 0, len(nums)
-    while x + 1 < y:
-        h = (x + y) // 2
-        if all(solved(nums[:h + 1], board) for board in boards):
-            y = h
-        else:
-            x = h
-    return nums[y] * score(nums[:y + 1], next(board for board in boards if not solved(nums[:y], board)))
+    i = search(nums, boards, all)
+    return nums[i] * score(nums[:i + 1], next(board for board in boards if not solved(nums[:i], board)))
 
 
 if __name__ == "__main__":
