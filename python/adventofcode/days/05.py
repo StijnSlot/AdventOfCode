@@ -1,7 +1,7 @@
 from adventofcode.util import aoc
 
 
-def read_lines(data: str) -> list[str]:
+def read_lines(data: str) -> list[(int, int, int, int)]:
     lines = []
     for row in data.splitlines():
         start, end = row.split(" -> ")
@@ -11,7 +11,7 @@ def read_lines(data: str) -> list[str]:
     return lines
 
 
-def create_grid(lines: list[str], allow_diagonal: bool) -> list[list[int]]:
+def create_grid(lines: list[(int, int, int, int)], allow_diagonal: bool) -> list[list[int]]:
     grid_size = max(max(line) for line in lines) + 1
     grid = [[0 for _ in range(grid_size)] for _ in range(grid_size)]
     for line in lines:
@@ -29,16 +29,18 @@ def create_grid(lines: list[str], allow_diagonal: bool) -> list[list[int]]:
     return grid
 
 
-def part_one(data: str) -> int:
+def solve(data: str, allow_diagonals: bool) -> int:
     lines = read_lines(data)
-    grid = create_grid(lines, False)
+    grid = create_grid(lines, allow_diagonals)
     return sum(1 for row in grid for x in row if x >= 2)
+
+
+def part_one(data: str) -> int:
+    return solve(data, False)
 
 
 def part_two(data: str) -> int:
-    lines = read_lines(data)
-    grid = create_grid(lines, True)
-    return sum(1 for row in grid for x in row if x >= 2)
+    return solve(data, True)
 
 
 if __name__ == "__main__":

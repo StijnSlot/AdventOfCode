@@ -1,31 +1,31 @@
 from adventofcode.util import aoc
 
 
-def part_one(data: str) -> int:
-    x, y = 0, 0
-    for line in data.splitlines():
-        ins, num = line.split()
-        if ins == 'forward':
-            x += int(num)
-        elif ins == 'up':
-            y += int(num)
-        elif ins == 'down':
-            y -= int(num)
-    return x * y
-
-
-def part_two(data: str) -> int:
+def simulate(data: str, use_aim: bool) -> int:
     x, y, aim = 0, 0, 0
     for line in data.splitlines():
         ins, num = line.split()
         if ins == 'forward':
             x += int(num)
-            y += aim * int(num)
+            if use_aim:
+                y += aim * int(num)
         elif ins == 'up':
+            if not use_aim:
+                y += int(num)
             aim -= int(num)
         elif ins == 'down':
+            if not use_aim:
+                y -= int(num)
             aim += int(num)
     return x * y
+
+
+def part_one(data: str) -> int:
+    return simulate(data, False)
+
+
+def part_two(data: str) -> int:
+    return simulate(data, True)
 
 
 if __name__ == "__main__":

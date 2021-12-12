@@ -7,8 +7,7 @@ def most_common_bit(nums: list[str], i: int) -> int:
 
 def part_one(data: str) -> int:
     nums = data.splitlines()
-    gamma = ""
-    epsilon = ""
+    gamma, epsilon = "", ""
     for i in range(len(nums[0])):
         x = most_common_bit(nums, i)
         gamma += str(x)
@@ -17,8 +16,7 @@ def part_one(data: str) -> int:
 
 
 def part_two(data: str) -> int:
-    oxygen = data.splitlines()
-    co2 = data.splitlines()
+    oxygen = co2 = data.splitlines()
     i = 0
     while len(oxygen) > 1:
         most_common = str(most_common_bit(oxygen, i))
