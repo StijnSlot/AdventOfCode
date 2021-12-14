@@ -1,4 +1,4 @@
-# AdventOfCode2021
+# AdventOfCode
 Repository to host my solutions for Advent of Code, written in Python 3.10.
 
 ## Usage
