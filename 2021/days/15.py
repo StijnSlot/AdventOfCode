@@ -2,23 +2,27 @@ from util import aoc
 import heapq
 
 
-def dijkstra(grid: list[list[int]]) -> int:
+def neighbours(grid: list[list[int]], i: int, j: int) -> iter:
     dx = [0, 1, 0, -1]
     dy = [1, 0, -1, 0]
+    for k in range(4):
+        x, y = i + dx[k], j + dy[k]
+        if 0 <= x < len(grid) and 0 <= y < len(grid[0]):
+            yield x, y
+
+
+def dijkstra(grid: list[list[int]]) -> int:
     queue = [(0, 0, 0)]
     distances = {}
     while len(queue) > 0:
         total, i, j = heapq.heappop(queue)
-        print(total)
         if i == len(grid) - 1 and j == len(grid[0]) - 1:
             break
-        for k in range(4):
-            x, y = i + dx[k], j + dy[k]
-            if 0 <= x < len(grid) and 0 <= y < len(grid[0]):
-                new_total = total + grid[x][y]
-                if (x, y) not in distances or new_total < distances[(x, y)]:
-                    distances[(x, y)] = new_total
-                    heapq.heappush(queue, (new_total, x, y))
+        for x, y in neighbours(grid, i, j):
+            new_total = total + grid[x][y]
+            if (x, y) not in distances or new_total < distances[(x, y)]:
+                distances[(x, y)] = new_total
+                heapq.heappush(queue, (new_total, x, y))
     return distances[(len(grid) - 1, len(grid[0]) - 1)]
 
 
