@@ -40,7 +40,7 @@ def get_input(year: int, day: int, overwrite: bool = False):
     year_dir = os.path.join(ROOT_DIR, str(year))
     if not os.path.exists(year_dir):
         os.mkdir(year_dir)
-    data_dir = os.path.join(year_dir, f"{year}/data")
+    data_dir = os.path.join(year_dir, f"data")
     if not os.path.exists(data_dir):
         os.mkdir(data_dir)
     file_name = os.path.join(data_dir, f"{day}.txt")
