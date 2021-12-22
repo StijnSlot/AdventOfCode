@@ -8,7 +8,7 @@ def most_common_bit(nums: list[str], i: int) -> int:
 def part_one(data: str) -> int:
     nums = data.splitlines()
     gamma, epsilon = "", ""
-    for i in range(len(nums[0])):
+    for i, _ in enumerate(nums[0]):
         x = most_common_bit(nums, i)
         gamma += str(x)
         epsilon += str(1 - x)

@@ -4,8 +4,8 @@ from util import aoc
 def neighbours(grid: list[str], i: int, j: int) -> iter:
     dx = [0, -1, 0, 1]
     dy = [-1, 0, 1, 0]
-    for k in range(len(dx)):
-        x, y = i + dx[k], j + dy[k]
+    for ddx, ddy in zip(dx, dy):
+        x, y = i + ddx, j + ddy
         if 0 <= x < len(grid) and 0 <= y < len(grid[0]):
             yield x, y
 

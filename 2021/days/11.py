@@ -10,8 +10,8 @@ def flash(grid: list[list[int]], i: int, j: int) -> int:
     dy = [1, 0, -1, 1, -1, 1, 0, -1]
     flashes = 1
     grid[i][j] = 0
-    for k in range(len(dx)):
-        x, y = i + dx[k], j + dy[k]
+    for ddx, ddy in zip(dx, dy):
+        x, y = i + ddx, j + ddy
         if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] != 0:
             grid[x][y] += 1
             if grid[x][y] > 9:
