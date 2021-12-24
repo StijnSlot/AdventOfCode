@@ -33,6 +33,7 @@ def read_data(data: str) -> list[Cube]:
 
 
 def cube_difference(cube0: Cube, cube1: Cube) -> list[Cube]:
+    """Returns a list of cubes inside cube0 minus cube1"""
     if not cube0.intersects(cube1):
         return [cube0]
     cubes = []
