@@ -1,6 +1,0 @@
-inp a - Read an input value and write it to variable a.
-add a b - Add the value of a to the value of b, then store the result in variable a.
-mul a b - Multiply the value of a by the value of b, then store the result in variable a.
-div a b - Divide the value of a by the value of b, truncate the result to an integer, then store the result in variable a. (Here, "truncate" means to round the value toward zero.)
-mod a b - Divide the value of a by the value of b, then store the remainder in variable a. (This is also called the modulo operation.)
-eql a b
