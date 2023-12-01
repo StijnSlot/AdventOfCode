@@ -36,7 +36,6 @@ def part_two(data: str) -> int:
 
 
 if __name__ == "__main__":
-    with open('../data/25.txt') as f:
-        input_data = f.read()
+    input_data = aoc.get_input(2021, 25)
     print(part_one(input_data))
     print(part_two(input_data))
