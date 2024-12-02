@@ -10,7 +10,6 @@ def parse_data(data: str) -> (str, {str, (str, str)}):
     for line in part2.splitlines():
         match = re.match("(\w+) = \((\w+), (\w+)", line)
         nodes[match.group(1)] = (match.group(2), match.group(3))
-    print(part1, nodes)
     return part1, nodes
 
 
