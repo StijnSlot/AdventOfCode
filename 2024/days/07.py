@@ -16,7 +16,7 @@ def can_equation_be_true(i: int, left: int, nums: [int], goal: int, with_concat:
         return False  # can never become smaller
     return can_equation_be_true(i + 1, left + nums[i], nums, goal, with_concat) \
            or can_equation_be_true(i + 1, left * nums[i], nums, goal, with_concat) \
-           or (with_concat and can_equation_be_true(i + 1, int(str(left) + str(nums[i])), nums, goal, with_concat))
+           or (with_concat and can_equation_be_true(i + 1, int(f"{left}{nums[i]}"), nums, goal, with_concat))
 
 
 def part_one(data: str) -> int:
